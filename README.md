@@ -106,31 +106,3 @@ FS --> FIN[Finance_Data]
 FS --> SALES[Sales_Data]
 FS --> CS[CustomerService_Data]
 ```
-
-
-
-``
-## solotech-active-directory-lab
-
-│
-├── README.md
-│
-├── Architecture
-│   ├── Network_Diagram.png
-│
-├── Screenshots
-│   ├── DC01.png
-│   ├── ActiveDirectory.png
-│   ├── GPO.png
-│   ├── DriveMappings.png
-│   ├── PrinterDeployment.png
-│
-├── Documentation
-│   ├── Project_Report.docx
-│   ├── Troubleshooting_Cases.docx
-│
-└── Tickets
-    ├── INC001_Account_Lockout.md
-    ├── INC002_Password_Reset.md
-    └── etc
-``
