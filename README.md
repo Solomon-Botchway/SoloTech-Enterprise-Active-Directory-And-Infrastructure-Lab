@@ -1,17 +1,16 @@
 # SoloTech-Innovations---Enterprise-Active-Directory-Lab
 Enterprise Active Directory Lab built using Windows Server 2022, Hyper-V, Group Policy and Windows 11.
-# SoloTech Innovations Active Directory Lab
 
 ## Infrastructure Overview
 
-```text
+```
                             INTERNET
                                 │
                      Home Router / WiFi
                                 │
             ┌───────────────────┴───────────────────┐
             │                                       │
-     Host Laptop                            HP DJ2700 Printer
+     Host Laptop                            HP DJ2700 Series Printer
    Windows 11 Pro
             │
             │
@@ -37,7 +36,6 @@ solotech.local
 
 ## Domain Structure
 
-```text
 solotech.local
 
 └── SoloTech
@@ -46,18 +44,16 @@ solotech.local
     ├── Finance
     ├── Sales
     └── Customer Service
-```
-
+``
 ## Security Groups
 
-```text
 IT-Team
 HR-Team
 Finance-Team
 Sales-Team
 CustomerService-Team
-```
 
+``
 ## Implemented Services
 
 - Active Directory Domain Services
@@ -81,3 +77,32 @@ CustomerService-Team
 - Software Deployment Troubleshooting
 - Password Lockout Investigations
 
+
+
+2
+# SoloTech Active Directory Lab
+
+```mermaid
+graph TD
+
+HOST[Host Windows 11 Pro Laptop]
+
+HOST --> HV[Hyper-V]
+
+HV --> DC01[DC01 Windows Server 2022]
+HV --> PC01[PC01 Windows 11 Enterprise]
+
+DC01 --> AD[Active Directory]
+DC01 --> DNS[DNS]
+DC01 --> FS[File Server]
+DC01 --> PS[Print Server]
+DC01 --> SW[Software Repository]
+
+PC01 --> DOMAIN[solotech.local]
+
+FS --> IT[IT_Data]
+FS --> HR[HR_Data]
+FS --> FIN[Finance_Data]
+FS --> SALES[Sales_Data]
+FS --> CS[CustomerService_Data]
+```
