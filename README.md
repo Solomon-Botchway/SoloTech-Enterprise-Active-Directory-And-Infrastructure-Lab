@@ -237,6 +237,169 @@ Threat Detection
 Security Investigation
 ```
 
+# IT Service Management & User Onboarding
+
+## Ticket Reference
+
+INC-003 – New Employee Onboarding
+
+## Business Request
+
+The Finance Manager submitted a request for a new joiner:
+
+```text
+Name: Daniel Dokafor
+Role: Finance Assistant
+Department: Finance
+```
+
+Required access:
+
+- Finance shared drive
+- Finance department printer
+- Standard domain access
+
+Restrictions:
+
+- No Payroll access
+- No access to other departmental resources
+- No access to other departmental printers
+
+## Pre-Provisioning Verification
+
+Before account creation, approval was verified from:
+
+- Hiring Manager
+- Human Resources
+
+This follows standard onboarding and identity management procedures.
+
+## Active Directory Provisioning
+
+Account created in:
+
+```text
+solotech.local
+└── SoloTech
+    └── Finance
+         └── dokafor
+```
+
+User configuration:
+
+- Temporary password assigned
+- Password change required at first logon
+- No account expiration date
+- Department information completed
+- Job title completed
+- Manager assigned
+- Office location recorded
+
+## Security Group Assignment
+
+Assigned Groups:
+
+```text
+Domain Users
+
+Finance-Team
+```
+
+Access granted through Finance-Team:
+
+- FINANCE_Drive
+- FINANCE-PRINTER
+- General Finance documents
+
+## Least Privilege Access Implementation
+
+A sensitive Payroll folder was identified during the onboarding process.
+
+A dedicated security group was created:
+
+```text
+Finance-Team-Payroll
+```
+
+NTFS permissions were modified so that:
+
+```text
+Finance-Team-Payroll
+```
+
+retains Payroll access.
+
+```text
+Finance-Team
+```
+
+was removed from Payroll permissions.
+
+Daniel was intentionally excluded from:
+
+```text
+Finance-Team-Payroll
+```
+
+as part of least-privilege access control.
+
+## Validation Testing
+
+Testing was performed using the newly created account.
+
+| Resource | Result |
+|-----------|----------|
+| Finance Shared Drive | ✅ Accessible |
+| Finance Documents | ✅ Read/Write Access |
+| Payroll Folder | ❌ Access Denied |
+| Finance Printer | ✅ Accessible |
+| Other Department Drives | ❌ Not Accessible |
+| Other Department Printers | ❌ Not Accessible |
+
+## Resolution
+
+User account successfully provisioned according to business requirements.
+
+Access was assigned using:
+
+- Active Directory Security Groups
+- NTFS Permissions
+- Role Based Access Control (RBAC)
+- Least Privilege Principles
+
+## Skills Demonstrated
+
+- New Employee Onboarding
+- Active Directory Administration
+- User Provisioning
+- Identity & Access Management
+- Security Group Administration
+- NTFS Permissions Management
+- Role Based Access Control (RBAC)
+- Least Privilege Security
+- Printer Deployment
+- Shared Drive Administration
+- Access Verification
+- Service Desk Documentation
+
+## Cyber Security Relevance
+
+This onboarding process implemented:
+
+```text
+Identity Governance
+
+Least Privilege Access
+
+Separation of Duties
+
+Access Control Validation
+
+Role-Based Security
+```
+
+These are foundational security principles used in enterprise environments and Security Operations teams.
+
 This project serves as a foundation for future work with:
 
 - Microsoft Sentinel
