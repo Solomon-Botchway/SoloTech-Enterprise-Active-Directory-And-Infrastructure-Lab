@@ -52,46 +52,86 @@ graph LR
 
 ```
 
-## RBAC Model
+# RBAC Model
+
+This diagram illustrates role-based access control (RBAC) using Active Directory security groups.
 
 ```mermaid
 graph LR
 
-    USER[Employee]
+    USER["Employee/User"]
 
-    USER --> GROUP[Department Security Group]
+    USER -->|Member Of| GROUP["Department Security Group"]
 
-    GROUP --> DRIVE[Shared Drives]
+    GROUP -->|Access Granted| DRIVE["Department Shared Drives"]
+    GROUP -->|Print Rights| PRINTER["Department Printers"]
+    GROUP -->|Policy Applied| POLICY["Department GPOs"]
 
-    GROUP --> PRINTER[Department Printers]
-
-    GROUP --> POLICY[Department GPOs]
+    POLICY -->|Configures Access| DRIVE
+    POLICY -->|Deploys Settings| PRINTER
 ```
+
+## Access Flow
+
+1. User is added to a Department Security Group.
+2. The Security Group grants access to shared drives.
+3. The Security Group grants access to department printers.
+4. Group Policies are applied based on group membership.
+5. GPOs configure resources and deploy settings automatically.
 
 ---
 
-```
+# Printer Architecture
 
-``
-## Printer Architecture
+This diagram shows printer deployment through Active Directory security groups and Group Policy.
 
 ```mermaid
 graph LR
 
-    USER[Finance User]
+    USER["Finance User"]
 
-    USER --> GROUP[Finance-Team]
+    USER -->|Member Of| GROUP["Finance-Team Security Group"]
 
-    GROUP --> GPO[Printer Deployment GPO]
+    GROUP -->|Security Filtering| GPO["Finance Printer Deployment GPO"]
 
-    GPO --> PRINTER[FINANCE-PRINTER]
+    GPO -->|Deploys Printer Queue| PRINTSERVER["PRINT-SRV01"]
 
-    PRINTER --> HP[HP Network Printer]
+    PRINTSERVER -->|Publishes| PRINTER["FINANCE-PRINTER"]
+
+    USER -->|Receives Mapped Printer| PRINTER
 ```
 
----
+## User Provisioning Model
+
+```mermaid
+graph LR
+
+    NEWUSER[New Employee]
+
+    NEWUSER --> OU[Department OU]
+
+    OU --> GROUP[Security Group]
+
+    GROUP --> DRIVE[Shared Drive]
+
+    GROUP --> PRINTER[Department Printer]
+
+    GROUP --> POLICY[Department GPO]
 
 ```
+    EVENTS --> LOGON[Logon Events]
+    EVENTS --> LOCKOUT[Account Lockouts]
+    EVENTS --> MANAGEMENT[Account Management Events]
+
+    PAYGROUP --> PAYROLL
+
+
+
+
+## Printer Deployment Flow
+
+1. User belongs to the Finance-Team security group.
+2. Group Policy 
 
 # Automated & Self-Cleaning Enterprise Printer Deployment Architecture
 
@@ -165,29 +205,6 @@ This layout guarantees absolute default persistence by enforcing two rules in a 
 # Technical Architecture Diagram
 
 ``
-## User Provisioning Model
-
-```mermaid
-graph LR
-
-    NEWUSER[New Employee]
-
-    NEWUSER --> OU[Department OU]
-
-    OU --> GROUP[Security Group]
-
-    GROUP --> DRIVE[Shared Drive]
-
-    GROUP --> PRINTER[Department Printer]
-
-    GROUP --> POLICY[Department GPO]
-
-```
-    EVENTS --> LOGON[Logon Events]
-    EVENTS --> LOCKOUT[Account Lockouts]
-    EVENTS --> MANAGEMENT[Account Management Events]
-
-    PAYGROUP --> PAYROLL
 
 ```
 
