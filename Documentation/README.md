@@ -66,13 +66,13 @@ graph LR
     GROUP --> PRINTER[Department Printers]
 
     GROUP --> POLICY[Department GPOs]
-
 ```
 
 ---
 
 ```
 
+``
 ## Printer Architecture
 
 ```mermaid
