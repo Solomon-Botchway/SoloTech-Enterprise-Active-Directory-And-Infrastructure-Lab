@@ -484,55 +484,24 @@ This layout guarantees absolute default persistence by enforcing two rules in a 
 ```mermaid
 graph TD
 
-    USER1[IT User]
-    USER2[HR User]
-    USER3[Finance User]
-    USER4[Sales User]
-    USER5[Customer Service User]
+    ## User Provisioning Model
 
-    USER1 --> PC01[PC01 Windows 11 Enterprise]
-    USER2 --> PC01
-    USER3 --> PC01
-    USER4 --> PC01
-    USER5 --> PC01
+```mermaid
+graph LR
 
-    PC01 --> DC01[DC01 Windows Server 2022]
+    NEWUSER[New Employee]
 
-    DC01 --> ADDS[Active Directory Domain Services]
-    DC01 --> DNS[DNS Server]
-    DC01 --> GPO[Group Policy Management]
-    DC01 --> FILE[File Server]
-    DC01 --> PRINT[Print Server]
-    DC01 --> SOFTWARE[Software Repository]
-    DC01 --> EVENTS[Windows Event Collector]
+    NEWUSER --> OU[Department OU]
 
-    FILE --> ITD[IT_Data]
-    FILE --> HRD[HR_Data]
-    FILE --> FIND[FINANCE_Data]
-    FILE --> SALESD[SALES_Data]
-    FILE --> CSD[CS_Data]
-    FILE --> PAYROLL[Payroll Folder]
+    OU --> GROUP[Security Group]
 
-    PRINT --> ITP[IT-PRINTER]
-    PRINT --> HRP[HR-PRINTER]
-    PRINT --> FINP[FINANCE-PRINTER]
-    PRINT --> SALP[SALES-PRINTER]
-    PRINT --> CSP[CUST-SERV-PRINTER]
+    GROUP --> DRIVE[Shared Drive]
 
-    ADDS --> ITTEAM[IT-Team]
-    ADDS --> HRTEAM[HR-Team]
-    ADDS --> FINTEAM[Finance-Team]
-    ADDS --> SALTEAM[Sales-Team]
-    ADDS --> CSTEAM[CustomerService-Team]
-    ADDS --> PAYGROUP[Finance-Team-Payroll]
+    GROUP --> PRINTER[Department Printer]
 
-    GPO --> DRIVE[Drive Mapping GPO]
-    GPO --> WALL[HR Wallpaper GPO]
-    GPO --> RESTRICT[Customer Service Restrictions]
-    GPO --> PRINTERGPO[Printer Deployment GPO]
-    GPO --> SOFTGPO[Software Deployment GPO]
-    GPO --> AUDIT[Audit & Event Logging Policy]
+    GROUP --> POLICY[Department GPO]
 
+```
     EVENTS --> LOGON[Logon Events]
     EVENTS --> LOCKOUT[Account Lockouts]
     EVENTS --> MANAGEMENT[Account Management Events]
@@ -835,3 +804,57 @@ Automatically Updated
 - User Lifecycle Management
 - Role-Based Access Control (RBAC)
 - Enterprise Desktop Administration
+
+
+# RBAC (Role-Based Access Control) Model
+
+```text
+Finance User
+      │
+      ▼
+Finance-Team
+      │
+      ├── FINANCE_Drive
+      ├── FINANCE-PRINTER
+      └── Finance Documents
+
+Finance-Team-Payroll
+      │
+      └── Payroll Folder
+
+Only Approved Payroll Staff
+      │
+      ▼
+Finance-Team-Payroll
+      │
+      ▼
+Payroll Access Granted
+
+All Other Finance Users
+      │
+      ▼
+Payroll Access Denied
+```
+
+# Security Monitoring Architecture
+
+```text
+PC01
+│
+├── Successful Logons (4624)
+├── Failed Logons (4625)
+├── Account Lockouts (4740)
+├── Account Management Events
+│
+▼
+Windows Event Forwarding
+│
+▼
+DC01 Event Collector
+│
+├── Security Monitoring
+├── Audit Review
+├── Incident Investigation
+└── Compliance Logging
+```
+
