@@ -71,6 +71,7 @@ graph LR
 
 ---
 
+```
 
 ## Printer Architecture
 
