@@ -481,10 +481,8 @@ This layout guarantees absolute default persistence by enforcing two rules in a 
 
 # Technical Architecture Diagram
 
-```mermaid
-graph TD
-
-    ## User Provisioning Model
+``
+## User Provisioning Model
 
 ```mermaid
 graph LR
