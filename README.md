@@ -1,16 +1,36 @@
-# SoloTech-Innovations---Enterprise-Active-Directory-Lab
-Enterprise Active Directory Lab built using Windows Server 2022, Hyper-V, Group Policy and Windows 11.
+# SoloTech Innovations Enterprise Active Directory Lab
 
-## Infrastructure Overview
+## Overview
 
-```
+SoloTech Innovations is a hands-on enterprise infrastructure lab designed to simulate a real-world Microsoft environment using Hyper-V, Windows Server 2022, and Windows 11 Enterprise.
+
+The project focuses on building practical experience in:
+
+- Active Directory Domain Services (AD DS)
+- DNS Administration
+- Group Policy Management
+- Identity & Access Management (IAM)
+- File and Print Services
+- Software Deployment
+- Windows Event Forwarding (WEF)
+- Security Monitoring
+- IT Service Management
+- Enterprise Troubleshooting
+
+The environment was designed, deployed, administered, and continuously improved through real-world support scenarios and change-management style projects.
+
+---
+
+# Infrastructure Overview
+
+```text
                             INTERNET
                                 │
                      Home Router / WiFi
                                 │
             ┌───────────────────┴───────────────────┐
             │                                       │
-     Host Laptop                            HP DJ2700 Series Printer
+     Host Laptop                         HP DJ2700 Printer
    Windows 11 Pro
             │
             │
@@ -18,7 +38,6 @@ Enterprise Active Directory Lab built using Windows Server 2022, Hyper-V, Group 
             │
  ┌──────────┴──────────┐
  │                     │
- ▼                     ▼
 
 DC01                 PC01
 Windows Server       Windows 11 Enterprise
@@ -28,14 +47,17 @@ Active Directory
 DNS
 Print Server
 File Server
-Software Deployment
+Software Repository
 
 Domain:
 solotech.local
 ```
 
-## Domain Structure
+---
 
+## Active Directory Structure
+
+```text
 solotech.local
 
 └── SoloTech
@@ -44,228 +66,89 @@ solotech.local
     ├── Finance
     ├── Sales
     └── Customer Service
-``
-## Security Groups
+```
 
+### Security Groups
+
+```text
 IT-Team
 HR-Team
 Finance-Team
 Sales-Team
 CustomerService-Team
-
-``
-## Implemented Services
-
-- Active Directory Domain Services
-- DNS
-- Shared Folders
-- NTFS Permissions
-- Group Policy
-- Drive Mapping
-- Printer Deployment
-- Software Deployment
-- Account Lockout Policies
-- Password Policies
-
-## Troubleshooting Experience
-
-- Windows 11 TPM & Secure Boot Requirements
-- Domain Trust Relationship Repair
-- GPO Security Filtering Issues
-- Drive Mapping Errors
-- Printer Permission Issues
-- Software Deployment Troubleshooting
-- Password Lockout Investigations
-
-
-
-2
-# SoloTech Active Directory Lab
-
-```mermaid
-graph TD
-
-HOST[Host Windows 11 Pro Laptop]
-
-HOST --> HV[Hyper-V]
-
-HV --> DC01[DC01 Windows Server 2022]
-HV --> PC01[PC01 Windows 11 Enterprise]
-
-DC01 --> AD[Active Directory]
-DC01 --> DNS[DNS]
-DC01 --> FS[File Server]
-DC01 --> PS[Print Server]
-DC01 --> SW[Software Repository]
-
-PC01 --> DOMAIN[solotech.local]
-
-FS --> IT[IT_Data]
-FS --> HR[HR_Data]
-FS --> FIN[Finance_Data]
-FS --> SALES[Sales_Data]
-FS --> CS[CustomerService_Data]
-```
-# SoloTech Innovations Enterprise Infrastructure Lab
-
-## Overview
-
-SoloTech Innovations is a hands-on enterprise IT infrastructure lab built using:
-
-- Windows Server 2022
-- Windows 11 Enterprise
-- Hyper-V
-- Active Directory Domain Services (AD DS)
-- DNS
-- Group Policy
-- Shared File Services
-- Print Services
-- Software Deployment
-- Windows Event Forwarding
-
-The project was designed to simulate real-world IT Support, Systems Administration, and Cyber Security operations in a small-to-medium business environment.
-
----
-
-# Technical Architecture
-
-```mermaid
-graph LR
-
-    USERS[Domain Users]
-
-    USERS --> PC01[PC01<br>Windows 11 Enterprise]
-
-    PC01 --> DC01[DC01<br>Windows Server 2022]
-
-    DC01 --> AD[Active Directory & DNS]
-    DC01 --> GPO[Group Policy]
-    DC01 --> FILE[File & Print Services]
-    DC01 --> SEC[Security Monitoring]
-
+Finance-Team-Payroll
 ```
 
 ---
 
 # Infrastructure Components
 
-## DC01
+## DC01 – Windows Server 2022
 
-**Operating System**
+Configured as the central infrastructure server providing:
 
-```text
-Windows Server 2022
-```
-
-**Services**
-
-- Active Directory Domain Services
+- Active Directory Domain Services (AD DS)
 - DNS
 - Group Policy Management
-- File Server
-- Print Server
-- Software Repository
-- Event Collector
+- File Services
+- Print Services
+- Software Deployment Repository
+- Windows Event Collector
 
----
+## PC01 – Windows 11 Enterprise
 
-## PC01
+Configured as the primary domain-joined workstation for:
 
-**Operating System**
-
-```text
-Windows 11 Enterprise
-```
-
-**Purpose**
-
-- Domain workstation
-- Group Policy testing
-- Software deployment testing
-- Security monitoring
 - User authentication testing
+- Group Policy validation
+- Software deployment testing
+- Printer deployment testing
+- Security monitoring
+- Event forwarding
 
 ---
 
-## Domain
+# Core Technologies Implemented
 
-```text
-solotech.local
-```
+## Active Directory & Identity Management
 
----
+- User account provisioning
+- Password management
+- Account lockout policies
+- Department-based Organizational Units
+- Security Group administration
+- Role-Based Access Control (RBAC)
+- Least Privilege implementation
 
-# Active Directory Structure
+## Group Policy Management
 
-```text
-solotech.local
+Successfully implemented:
 
-└── SoloTech
-    ├── IT
-    ├── HR
-    ├── Finance
-    ├── Sales
-    └── Customer Service
-```
+- Password Complexity Policies
+- Account Lockout Policies
+- Department Drive Mapping
+- Department Printer Deployment
+- HR Wallpaper Deployment
+- Customer Service Restrictions
+- Software Deployment
+- Security Auditing Policies
 
----
+## File Services
 
-# Identity & Access Management
+Departmental file shares secured through:
 
-## Security Groups
-
-```text
-IT-Team
-
-HR-Team
-
-Finance-Team
-
-Sales-Team
-
-CustomerService-Team
-
-Finance-Team-Payroll
-```
-
-## RBAC Model
-
-```mermaid
-graph LR
-
-    USER[Employee]
-
-    USER --> GROUP[Department Security Group]
-
-    GROUP --> DRIVE[Shared Drives]
-
-    GROUP --> PRINTER[Department Printers]
-
-    GROUP --> POLICY[Department GPOs]
-
-```
-
----
-
-# Shared Drive Infrastructure
-
-Departmental file shares were created and secured using:
-
+- Active Directory Security Groups
 - Share Permissions
 - NTFS Permissions
-- Active Directory Security Groups
+- Least Privilege Design
 
 Examples:
 
 ```text
 IT_Data
-
 HR_Data
-
 FINANCE_Data
-
 SALES_Data
-
 CS_Data
 ```
 
@@ -275,173 +158,150 @@ A separate Payroll security model was implemented using:
 Finance-Team-Payroll
 ```
 
-to enforce least-privilege access.
+to protect sensitive financial records.
 
 ---
 
-# Automated Printer Deployment
+# Featured Projects
 
-## Project Objective
+## Automated Departmental Printer Deployment
 
-Automatically deploy departmental printers based on group membership while enforcing role-based access control.
+### Business Objective
 
-## Printer Architecture
+Deliver a fully automated printer deployment solution that:
 
-```mermaid
-graph LR
+- Assigns printers based on department membership
+- Automatically sets default printers
+- Removes obsolete printers during department transfers
+- Requires zero manual intervention after onboarding
 
-    USER[Finance User]
+### Challenges Encountered
 
-    USER --> GROUP[Finance-Team]
-
-    GROUP --> GPO[Printer Deployment GPO]
-
-    GPO --> PRINTER[FINANCE-PRINTER]
-
-    PRINTER --> HP[HP Network Printer]
-
-```
-
-## Challenges Encountered
-
-### Initial Deployment Failure
-
-Users were required to manually browse:
+Initial deployment required users to manually browse:
 
 ```text
 \\DC01
 ```
 
-and connect to printers before they became available.
+to install printers.
 
-### Root Cause
-
-Printer deployment permissions and Group Policy targeting were not aligned.
-
-### Resolution
-
-Printer deployment was redesigned using:
-
-```text
-Authenticated Users
-        +
-Group Policy Item-Level Targeting
-        +
-Department Security Groups
-```
-
-This provided:
-
-- Automated deployment
-- Department-specific assignment
-- Reduced administrative effort
-
----
-
-# Default Printer Automation
-
-Windows was automatically assigning:
+Windows also repeatedly reverted default printers to:
 
 ```text
 Microsoft Print to PDF
 ```
 
-as the default printer.
+during policy refresh cycles.
 
-To resolve this:
+### Solution
 
-- Disabled "Let Windows manage my default printer"
-- Implemented registry-based GPO settings
-- Enforced departmental printers as the default printer
+Implemented:
+
+- Group Policy Preferences
+- Item-Level Targeting
+- Active Directory Security Groups
+- Registry-based printer management
+- Automated default printer enforcement
+
+### Outcome
+
+Users automatically receive:
+
+- Department-specific printer access
+- Correct default printer assignment
+- Automatic printer replacement if department membership changes
 
 Example:
 
 ```text
-Finance User
+Finance-Team
         ↓
 FINANCE-PRINTER
-
-HR User
         ↓
-HR-PRINTER
-
-IT User
-        ↓
-IT-PRINTER
+Default Printer Assigned
 ```
 
----
-
-# Printer Lifecycle Management
-
-When a user changes department:
+If the user moves to HR:
 
 ```text
-Old Department Printer
-        ↓
-Automatically Removed
-
-New Department Printer
-        ↓
-Automatically Installed
-
-Default Printer
-        ↓
-Automatically Updated
+FINANCE-PRINTER removed
+HR-PRINTER deployed
+HR-PRINTER becomes default
 ```
 
-No manual administrator intervention is required.
+### Skills Demonstrated
+
+- Print Management
+- Group Policy Preferences
+- Printer Automation
+- Registry Configuration
+- RBAC
+- User Lifecycle Management
 
 ---
 
-# New Employee Onboarding Project
+## New Employee Onboarding
 
-## Ticket Scenario
+### Ticket Reference
 
-A request was received to provision a new Finance Assistant account.
+INC-003 – Finance Assistant Onboarding
 
-### Requirements
+### Business Requirement
+
+Provision a new Finance employee with:
 
 - Finance drive access
 - Finance printer access
+- Standard domain access
+
+Restrictions:
+
 - No Payroll access
 - No access to other departments
+- No access to other departmental printers
 
-### Provisioning Process
+### Provisioning Activities
 
-Created user account:
+Created and configured:
 
 ```text
 solotech.local
 └── SoloTech
     └── Finance
-```
-
-Assigned:
-
-```text
-Domain Users
-
-Finance-Team
+         └── dokafor
 ```
 
 Configured:
 
 - Temporary password
-- Password change at first logon
-- Department details
-- Manager information
+- Mandatory password change at first logon
+- Department information
+- Job title
+- Manager
 - Office location
 
-### Security Controls
+Assigned Groups:
 
-Payroll access was isolated through:
+```text
+Domain Users
+Finance-Team
+```
+
+### Security Implementation
+
+Created:
 
 ```text
 Finance-Team-Payroll
 ```
 
-The new employee was deliberately excluded from this group.
+to isolate Payroll data.
+
+The new employee was deliberately excluded from Payroll access using:
+
+- NTFS permissions
+- Security groups
+- RBAC principles
 
 ### Validation Results
 
@@ -453,38 +313,34 @@ The new employee was deliberately excluded from this group.
 | Finance Printer | ✅ Accessible |
 | Other Departments | ❌ Access Denied |
 
----
+### Skills Demonstrated
 
-# Group Policy Projects
-
-Successfully implemented:
-
-- Password Complexity Policy
-- Account Lockout Policy
-- HR Wallpaper Deployment
-- Department Drive Mapping
-- Printer Deployment
-- Software Deployment
-- Customer Service Restrictions
-- Event Logging Policies
+- User Provisioning
+- RBAC
+- Active Directory Administration
+- NTFS Permissions
+- Least Privilege
+- Service Desk Documentation
 
 ---
 
-# Security Monitoring
+## Security Monitoring & Event Forwarding
 
-## Windows Event Forwarding
+### Objective
 
-Successfully configured:
+Implement centralized event collection and security auditing.
+
+### Architecture
 
 ```text
 PC01
     ↓
-Windows Event Forwarding
+Windows Event Forwarding (WEF)
     ↓
 DC01 Event Collector
 ```
 
-## Security Events Monitored
+### Events Monitored
 
 - Successful Logons (4624)
 - Failed Logons (4625)
@@ -492,25 +348,51 @@ DC01 Event Collector
 - User Account Changes
 - Security Group Changes
 
-## Security Monitoring Architecture
+### Security Controls Implemented
 
-```text
-PC01
-│
-├── Security Events
-├── Logon Events
-├── Lockout Events
-│
-▼
-Windows Event Forwarding
-│
-▼
-DC01 Event Collector
-│
-├── Monitoring
-├── Auditing
-└── Investigation
-```
+- Windows Event Forwarding
+- Subscription Management
+- Firewall Configuration
+- Security Auditing via GPO
+- Centralized Event Collection
+
+### Security Benefit
+
+Provides visibility into:
+
+- Authentication activity
+- Account management events
+- Security policy enforcement
+- User behaviour monitoring
+
+---
+
+# Troubleshooting Experience
+
+Throughout the project, multiple enterprise-style incidents were investigated and resolved.
+
+### Resolved Issues
+
+- Windows 11 TPM and Secure Boot deployment failures
+- Active Directory trust relationship failures
+- GPO Security Filtering issues
+- Drive mapping failures
+- Printer deployment failures
+- Default printer assignment issues
+- Account lockout investigations
+- Group Policy delegation issues
+- Software deployment failures
+- Windows Event Forwarding configuration issues
+- DNS-related authentication issues
+- Hyper-V Enhanced Session behaviour
+
+Each issue was documented using:
+
+- Investigation
+- Root Cause Analysis
+- Resolution
+- Validation
+- Lessons Learned
 
 ---
 
@@ -522,30 +404,24 @@ DC01 Event Collector
 - Windows 11 Enterprise
 - Hyper-V
 - DNS
-- AD DS
+- Active Directory Domain Services
 
 ## Identity & Access Management
 
-- Active Directory Administration
 - User Provisioning
 - Security Groups
-- Role-Based Access Control
+- Role-Based Access Control (RBAC)
 - Least Privilege
+- User Lifecycle Management
 
 ## Group Policy
 
 - GPO Design
 - Security Filtering
 - Delegation
+- Drive Mapping
 - Printer Deployment
 - Software Deployment
-- Drive Mapping
-
-## File Services
-
-- NTFS Permissions
-- Shared Folders
-- Access Control
 
 ## Security
 
@@ -553,21 +429,21 @@ DC01 Event Collector
 - Security Auditing
 - Account Lockout Monitoring
 - Event Analysis
+- Access Control
 
-## Support & Troubleshooting
+## IT Operations
 
-- Trust Relationship Recovery
-- GPO Troubleshooting
-- Printer Deployment Issues
-- DNS Troubleshooting
-- Windows 11 Installation Issues
+- Incident Management
+- Troubleshooting
+- Service Desk Documentation
 - Root Cause Analysis
+- Change Validation
 
 ---
 
-# Key Outcome
+# Key Outcomes
 
-This lab successfully evolved from a basic Active Directory environment into a miniature enterprise infrastructure platform incorporating:
+This project evolved from a simple Active Directory deployment into a miniature enterprise infrastructure environment incorporating:
 
 ✅ Identity Management
 
@@ -583,832 +459,21 @@ This lab successfully evolved from a basic Active Directory environment into a m
 
 ✅ User Lifecycle Management
 
-✅ IT Support Operations
+✅ IT Service Management
 
 ✅ Cyber Security Foundations
 
+---
 
-# Security Monitoring & Event Forwarding
+## Future Enhancements
 
-## Overview
+Planned expansion areas include:
 
-As part of the SoloTech Innovations Active Directory Lab, centralized Windows event monitoring was implemented to improve visibility, auditing, and security monitoring across domain-joined devices.
-
-## Environment
-
-| Device | Operating System | Role |
-|----------|----------|----------|
-| DC01 | Windows Server 2022 | Domain Controller / Event Collector |
-| PC01 | Windows 11 Enterprise | Event Source |
-
-Domain:
-
-```text
-solotech.local
-```
-
-## Implemented Features
-
-### Windows Event Forwarding (WEF)
-
-Successfully configured:
-
-```text
-PC01
-   ↓
-Windows Event Forwarding
-   ↓
-DC01 Event Collector
-```
-
-Events generated on PC01 are now collected and monitored centrally from DC01.
-
-### Security Auditing
-
-Enabled auditing through Group Policy for:
-
-- Successful Logon Events
-- Failed Logon Events
-- Account Lockout Events
-- Account Management Events
-- User Authentication Events
-- Security Log Monitoring
-
-### Firewall Configuration
-
-Configured Windows Firewall rules to allow:
-
-```text
-Windows Remote Event Log Management
-
-Windows Event Collector Service
-
-Windows Remote Management (WinRM)
-```
-
-ensuring successful communication between PC01 and DC01.
-
-## Validation Tests Performed
-
-### Logon Monitoring
-
-Generated multiple successful and failed logon attempts on PC01 and confirmed events were received on DC01.
-
-### Account Lockout Monitoring
-
-Triggered account lockouts using the SoloTech Account Lockout Policy and verified collection of the resulting security events.
-
-### Event Subscription Verification
-
-Verified event subscriptions were:
-
-```text
-Active
-
-Connected
-
-Receiving Events
-```
-
-through Event Viewer on DC01.
-
-## Key Event IDs Monitored
-
-| Event ID | Description |
-|-----------|-------------|
-| 4624 | Successful Logon |
-| 4625 | Failed Logon |
-| 4720 | User Account Created |
-| 4722 | Account Enabled |
-| 4725 | Account Disabled |
-| 4728 | Added to Security Group |
-| 4729 | Removed from Security Group |
-| 4740 | Account Locked Out |
-| 1102 | Audit Log Cleared |
-
-## Skills Demonstrated
-
-- Windows Event Forwarding (WEF)
-- Event Viewer Administration
-- Security Auditing
-- Active Directory Monitoring
-- Windows Firewall Configuration
-- Group Policy Administration
-- Security Log Analysis
-- Troubleshooting Event Collection
-- Security Operations Fundamentals
-
-## Cyber Security Relevance
-
-This implementation introduces concepts commonly used in Security Operations Centres (SOC) and Security Information and Event Management (SIEM) platforms.
-
-The architecture simulates the early stages of:
-
-```text
-Endpoint Monitoring
-        ↓
-Windows Event Forwarding
-        ↓
-Central Log Collection
-        ↓
-Threat Detection
-        ↓
-Security Investigation
-```
-
-# IT Service Management & User Onboarding
-
-## Ticket Reference
-
-INC-003 – New Employee Onboarding
-
-## Business Request
-
-The Finance Manager submitted a request for a new joiner:
-
-```text
-Name: Daniel Dokafor
-Role: Finance Assistant
-Department: Finance
-```
-
-Required access:
-
-- Finance shared drive
-- Finance department printer
-- Standard domain access
-
-Restrictions:
-
-- No Payroll access
-- No access to other departmental resources
-- No access to other departmental printers
-
-## Pre-Provisioning Verification
-
-Before account creation, approval was verified from:
-
-- Hiring Manager
-- Human Resources
-
-This follows standard onboarding and identity management procedures.
-
-## Active Directory Provisioning
-
-Account created in:
-
-```text
-solotech.local
-└── SoloTech
-    └── Finance
-         └── dokafor
-```
-
-User configuration:
-
-- Temporary password assigned
-- Password change required at first logon
-- No account expiration date
-- Department information completed
-- Job title completed
-- Manager assigned
-- Office location recorded
-
-## Security Group Assignment
-
-Assigned Groups:
-
-```text
-Domain Users
-
-Finance-Team
-```
-
-Access granted through Finance-Team:
-
-- FINANCE_Drive
-- FINANCE-PRINTER
-- General Finance documents
-
-## Least Privilege Access Implementation
-
-A sensitive Payroll folder was identified during the onboarding process.
-
-A dedicated security group was created:
-
-```text
-Finance-Team-Payroll
-```
-
-NTFS permissions were modified so that:
-
-```text
-Finance-Team-Payroll
-```
-
-retains Payroll access.
-
-```text
-Finance-Team
-```
-
-was removed from Payroll permissions.
-
-Daniel was intentionally excluded from:
-
-```text
-Finance-Team-Payroll
-```
-
-as part of least-privilege access control.
-
-## Validation Testing
-
-Testing was performed using the newly created account.
-
-| Resource | Result |
-|-----------|----------|
-| Finance Shared Drive | ✅ Accessible |
-| Finance Documents | ✅ Read/Write Access |
-| Payroll Folder | ❌ Access Denied |
-| Finance Printer | ✅ Accessible |
-| Other Department Drives | ❌ Not Accessible |
-| Other Department Printers | ❌ Not Accessible |
-
-## Resolution
-
-User account successfully provisioned according to business requirements.
-
-Access was assigned using:
-
-- Active Directory Security Groups
-- NTFS Permissions
-- Role Based Access Control (RBAC)
-- Least Privilege Principles
-
-## Skills Demonstrated
-
-- New Employee Onboarding
-- Active Directory Administration
-- User Provisioning
-- Identity & Access Management
-- Security Group Administration
-- NTFS Permissions Management
-- Role Based Access Control (RBAC)
-- Least Privilege Security
-- Printer Deployment
-- Shared Drive Administration
-- Access Verification
-- Service Desk Documentation
-
-## Cyber Security Relevance
-
-This onboarding process implemented:
-
-```text
-Identity Governance
-
-Least Privilege Access
-
-Separation of Duties
-
-Access Control Validation
-
-Role-Based Security
-```
-
-These are foundational security principles used in enterprise environments and Security Operations teams.
-
-This project serves as a foundation for future work with:
-
+- Microsoft 365 Administration
+- Microsoft Entra ID
+- Microsoft Intune
 - Microsoft Sentinel
-- Splunk
-- Elastic SIEM
-- Security Operations (SOC)
-- Incident Response
-- Threat Hunting
-
-
-# Automated & Self-Cleaning Enterprise Printer Deployment Architecture
-
-A centralized, automated, and self-cleaning printer deployment solution utilizing **Windows Server 2022 Active Directory Domain Services (AD DS)**, **Group Policy Preferences (GPP)**, and **Item-Level Targeting**. 
-
-This architecture ensures that users automatically map and default to their respective department's printers based strictly on their Active Directory security group memberships with zero manual IT support intervention.
-
----
-
-## 🛠️ Architecture Workflow Diagram
-
-```text
-[ Active Directory Users ]
-           │
-           ▼
-┌────────────────────────────────────────────────────────┐
-│  1. User Logs On / GPO Triggers                       │
-└────────────────────────────────────────────────────────┘
-           │
-           ▼
-┌────────────────────────────────────────────────────────┐
-│  2. Registry Preference (Processes First)              │
-│     Sets: LegacyDefaultPrinterMode = 1                 │
-│     Blocks: "Allow Windows to manage my default..."    │
-└────────────────────────────────────────────────────────┘
-           │
-           ▼
-┌────────────────────────────────────────────────────────┐
-│  3. GPP Printer 'Replace' Cycle Evaluated             │
-└────────────────────────────────────────────────────────┘
-           │
-           ├─► [User in 'Print-Finance' Group?] ──► YES: Map Finance Printer & Set Default
-           │                                    └──► NO:  [Remove Device if previously mapped]
-           │
-           └─► [User in 'Print-HR' Group?]      ──► YES: Map HR Printer & Set Default
-                                                └──► NO:  [Remove Device if previously mapped]
-```
-
----
-
-## 🎯 Technical Challenges Addressed
-
-1. **Departmental Isolation:** Restricting network printer visibility so users can only see, list, and interact with their specific department's hardware.
-2. **Dynamic Cross-Department Transfers:** Automatically purging stale printer mappings when a user shifts to a new department or security group, mitigating profile clutter.
-3. **The "Print to PDF" Hijack:** Preventing Windows 10/11 client machines from falling back to "Microsoft Print to PDF" as the system default during policy refresh cycles.
-4. **Permissions Overhead:** Preserving standard print server Access Control Lists (ACLs) to ensure drivers pull reliably without throwing "Access Denied" errors.
-
----
-
-## ⚙️ Core Implementation Details
-
-### 1. Visibility Filter via Item-Level Targeting
-Instead of deploying printers globally to an entire Organizational Unit (OU), mappings are controlled via targeted Active Directory Security Groups (e.g., `Print-Finance`, `Print-HR`).
-* **GPO Location:** `User Configuration` > `Preferences` > `Control Panel Settings` > `Printers`
-* **Filtering Gatekeeper:** Configured on the **Common Tab** using **Item-Level Targeting**, mapping the preference rule specifically to `User is a member of the Security Group`.
-* **Print Server Security:** Permissions on the Print Server are left at their healthy default (**Everyone: Print**). Security is cleanly managed at the GPO presentation layer rather than the server's ACLs.
-
-### 2. Automated Self-Cleaning Configuration
-To ensure the environment stays entirely clean if an employee changes departments, the policy alters the default GPO behavior:
-* Enabled **"Remove this item when it is no longer applied"** under the GPP Common Tab.
-* This changes the internal mechanics from an *Update* action to a **Replace** action (symbolized by a **Red Icon** in the Group Policy Management Console).
-* At every background policy check or login, Windows validates group membership. If membership has been stripped, the old device is instantly deleted from the client workstation.
-
-### 3. Securing the Default Status
-Because the *Replace* action quickly tears down and rebuilds network printers during background refreshes, Windows clients can temporarily drop the network connection for a split second, defaulting back to *Microsoft Print to PDF*.
-
-This layout guarantees absolute default persistence by enforcing two rules in a precise **Order of Operations**:
-* **Administrative Template:** Enforced `Turn off Windows default printer management` under *User Configuration > Policies > Administrative Templates > Control Panel > Printers*.
-* **Registry Pre-Conditioning:** Deployed a GPP Registry update to push `LegacyDefaultPrinterMode = 1` (REG_DWORD) under `HKCU\Software\Microsoft\Windows NT\CurrentVersion\Windows`.
-
-# Technical Architecture Diagram
-
-``
-## User Provisioning Model
-
-```mermaid
-graph LR
-
-    NEWUSER[New Employee]
-
-    NEWUSER --> OU[Department OU]
-
-    OU --> GROUP[Security Group]
-
-    GROUP --> DRIVE[Shared Drive]
-
-    GROUP --> PRINTER[Department Printer]
-
-    GROUP --> POLICY[Department GPO]
-
-```
-    EVENTS --> LOGON[Logon Events]
-    EVENTS --> LOCKOUT[Account Lockouts]
-    EVENTS --> MANAGEMENT[Account Management Events]
-
-    PAYGROUP --> PAYROLL
-
-```
-
-* **The Fix:** Because **Windows Settings (Registry)** processes cleanly before **Control Panel Settings (Printers)**, Windows is safely locked into classic printer management *before* the printer's replace cycle triggers, successfully maintaining the primary department printer's default status.
-
----
-
-## 🚀 Results & Impact
-
-* **Zero-Touch IT Lifecycle Management:** Onboarding or transferring an employee dynamically provisions their localized workplace printing setup without desktop support tickets.
-* **Confidentiality Assistance:** Minimizes security leaks where users mistakenly send sensitive data to the wrong department's physical queue.
-* **Consistent User Profiles:** Eradicates local registry drift and driver anomalies across user desktop configurations.
-
-
-
-# Automated Departmental Printer Deployment
-
-## Objective
-
-Implement automated printer deployment based on department membership using Active Directory Security Groups and Group Policy Preferences.
-
-## Initial Challenge
-
-The original printer deployment did not automatically install printers for users at first sign-in.
-
-Users were required to manually browse:
-
-```text
-\\DC01
-```
-
-and connect to their departmental printer before the printer became available.
-
-This behavior did not meet the desired enterprise standard for automated provisioning.
-
-## Investigation
-
-Several deployment methods were evaluated.
-
-### Attempt 1
-
-Used:
-
-```text
-Microsoft Print to PDF
-```
-
-as a test printer.
-
-Outcome:
-
-```text
-Unsuccessful
-```
-
-Microsoft Print to PDF could not be shared in a way that supported the deployment requirements.
-
-### Attempt 2
-
-A physical HP wireless printer was integrated into the SoloTech lab.
-
-Infrastructure:
-
-```text
-Host Network
-    ↓
-Hyper-V External Switch
-    ↓
-DC01
-    ↓
-HP Network Printer
-```
-
-The printer was installed on DC01 and additional logical departmental printers were created using the HP print driver.
-
-## Department Printer Structure
-
-```text
-IT-PRINTER
-
-HR-PRINTER
-
-FINANCE-PRINTER
-
-SALES-PRINTER
-
-CUST-SERV-PRINTER
-```
-
-## Printer Security Configuration
-
-Initially:
-
-```text
-Everyone
-```
-
-had print permissions.
-
-Result:
-
-```text
-All users could access all printers.
-```
-
-This violated least-privilege principles.
-
-### Resolution
-
-Removed:
-
-```text
-Everyone
-```
-
-from printer permissions.
-
-Assigned department security groups:
-
-```text
-IT-Team
-
-HR-Team
-
-Finance-Team
-
-Sales-Team
-
-CustomerService-Team
-```
-
-to their corresponding printers.
-
-## Printer Automation
-
-Implemented Group Policy Preferences to:
-
-- Deploy departmental printers automatically.
-- Set departmental printers as default printers.
-- Override Microsoft "Manage my default printer" behavior.
-- Remove printers when users move departments.
-- Deploy the correct printer based on current group membership.
-
-### Example
-
-User:
-
-```text
-Finance-Team
-```
-
-Receives:
-
-```text
-FINANCE-PRINTER
-```
-
-as default printer.
-
-If reassigned to:
-
-```text
-HR-Team
-```
-
-the system automatically:
-
-```text
-Removes FINANCE-PRINTER
-
-Deploys HR-PRINTER
-
-Sets HR-PRINTER as default
-```
-
-without manual administrator intervention.
-
-## Security Validation
-
-Testing confirmed:
-
-| Scenario | Result |
-|-----------|----------|
-| IT User → IT Printer | ✅ Allowed |
-| IT User → HR Printer | ❌ Access Denied |
-| IT User → Finance Printer | ❌ Access Denied |
-| Finance User → Finance Printer | ✅ Allowed |
-| Customer Service User → CS Printer | ✅ Allowed |
-| Unauthorized User → Department Printer | ❌ Access Denied |
-
-## Skills Demonstrated
-
-- Print Management
-- Group Policy Preferences
-- Active Directory Security Groups
-- Role Based Access Control (RBAC)
-- Least Privilege Access
-- Printer Security
-- Enterprise Printer Deployment
-- Lifecycle Access Management
-- User Provisioning
-- User Offboarding and Role Changes
-
-## Cyber Security Relevance
-
-This implementation demonstrates:
-
-```text
-Least Privilege
-
-Role Based Access Control
-
-Resource Segregation
-
-Identity-Based Access Management
-
-Automated Access Governance
-```
-
-which are foundational concepts used in enterprise security and identity management environments.
-
-
-## Advanced Printer Deployment & Lifecycle Management
-
-### Business Objective
-
-Implement fully automated printer deployment based on departmental membership.
-
-### Challenges Encountered
-
-Initial deployment methods did not automatically provision printers during user sign-in.
-
-Users were required to manually browse:
-
-```text
-\\DC01
-```
-
-and connect to printers before they became available.
-
-Windows also automatically changed default printers based on recent usage.
-
-### Final Solution
-
-Implemented:
-
-- Group Policy Printer Deployment
-- Security Group Targeting
-- Registry-based printer configuration
-- Default printer enforcement
-- Automatic printer replacement during department changes
-
-### Deployment Logic
-
-```text
-Finance-Team
-↓
-Deploy FINANCE-PRINTER
-↓
-Set FINANCE-PRINTER as Default
-```
-
-```text
-HR-Team
-↓
-Deploy HR-PRINTER
-↓
-Set HR-PRINTER as Default
-```
-
-### Lifecycle Automation
-
-When a user changes department:
-
-```text
-Old Department Printer
-↓
-Automatically Removed
-
-New Department Printer
-↓
-Automatically Installed
-
-Default Printer
-↓
-Automatically Updated
-```
-
-### Skills Demonstrated
-
-- Group Policy Preferences
-- Printer Deployment
-- Registry Configuration
-- Identity-Based Resource Assignment
-- User Lifecycle Management
-- Role-Based Access Control (RBAC)
-- Enterprise Desktop Administration
-
-
-# RBAC (Role-Based Access Control) Model
-
-```text
-Finance User
-      │
-      ▼
-Finance-Team
-      │
-      ├── FINANCE_Drive
-      ├── FINANCE-PRINTER
-      └── Finance Documents
-
-Finance-Team-Payroll
-      │
-      └── Payroll Folder
-
-Only Approved Payroll Staff
-      │
-      ▼
-Finance-Team-Payroll
-      │
-      ▼
-Payroll Access Granted
-
-All Other Finance Users
-      │
-      ▼
-Payroll Access Denied
-```
-
-# Security Monitoring Architecture
-
-```text
-PC01
-│
-├── Successful Logons (4624)
-├── Failed Logons (4625)
-├── Account Lockouts (4740)
-├── Account Management Events
-│
-▼
-Windows Event Forwarding
-│
-▼
-DC01 Event Collector
-│
-├── Security Monitoring
-├── Audit Review
-├── Incident Investigation
-└── Compliance Logging
-```
-
-
-## SoloTech Infrastructure Architecture
-
-```mermaid
-graph TD
-
-    Users[Domain Users]
-
-    Users --> PC01[PC01<br>Windows 11 Enterprise]
-
-    PC01 --> DC01[DC01<br>Windows Server 2022]
-
-    DC01 --> AD[Active Directory]
-    DC01 --> GPO[Group Policy]
-    DC01 --> FS[File & Print Services]
-    DC01 --> SEC[Event Monitoring]
-
-    FS --> Drive[Department Drives]
-    FS --> Printer[Department Printers]
-
-```
-``
-## SoloTech Active Directory Environment
-
-```mermaid
-graph LR
-
-    U[IT / HR / Finance Users]
-
-    U --> PC01[PC01<br>Windows 11]
-
-    PC01 --> DC01[DC01<br>Windows Server 2022]
-
-    DC01 --> AD[AD DS + DNS]
-
-    AD --> GPO[GPO Management]
-    AD --> FILE[Shared Drives]
-    AD --> PRINT[Printers]
-    AD --> WEF[Event Forwarding]
-
-```
-## Printer Deployment Model
-
-```mermaid
-graph LR
-
-    USER[Finance User]
-
-    USER --> GROUP[Finance-Team]
-
-    GROUP --> GPO[Printer Deployment GPO]
-
-    GPO --> PRINTER[FINANCE-PRINTER]
-
-    PRINTER --> HP[HP Network Printer]
-
-```
-
-## User Provisioning Workflow
-
-```mermaid
-graph LR
-
-    NEWUSER[New Employee]
-
-    NEWUSER --> OU[Finance OU]
-
-    OU --> GROUP[Finance-Team]
-
-    GROUP --> DRIVE[Finance Drive]
-
-    GROUP --> PRINTER[Finance Printer]
-
-    GROUP --> POLICY[Finance Policies]
-
-```
-
+- PowerShell Automation
+- Vulnerability Management
+- Security Operations Centre (SOC) Workflows
+- Incident Response Scenarios
