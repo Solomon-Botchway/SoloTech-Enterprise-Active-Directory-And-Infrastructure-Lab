@@ -86,7 +86,11 @@ graph LR
     GPO --> PRINTER[FINANCE-PRINTER]
 
     PRINTER --> HP[HP Network Printer]
+```
 
+---
+
+```
 
 # Automated & Self-Cleaning Enterprise Printer Deployment Architecture
 
