@@ -856,3 +856,80 @@ DC01 Event Collector
 └── Compliance Logging
 ```
 
+
+## SoloTech Infrastructure Architecture
+
+```mermaid
+graph TD
+
+    Users[Domain Users]
+
+    Users --> PC01[PC01<br>Windows 11 Enterprise]
+
+    PC01 --> DC01[DC01<br>Windows Server 2022]
+
+    DC01 --> AD[Active Directory]
+    DC01 --> GPO[Group Policy]
+    DC01 --> FS[File & Print Services]
+    DC01 --> SEC[Event Monitoring]
+
+    FS --> Drive[Department Drives]
+    FS --> Printer[Department Printers]
+
+```
+``
+## SoloTech Active Directory Environment
+
+```mermaid
+graph LR
+
+    U[IT / HR / Finance Users]
+
+    U --> PC01[PC01<br>Windows 11]
+
+    PC01 --> DC01[DC01<br>Windows Server 2022]
+
+    DC01 --> AD[AD DS + DNS]
+
+    AD --> GPO[GPO Management]
+    AD --> FILE[Shared Drives]
+    AD --> PRINT[Printers]
+    AD --> WEF[Event Forwarding]
+
+```
+## Printer Deployment Model
+
+```mermaid
+graph LR
+
+    USER[Finance User]
+
+    USER --> GROUP[Finance-Team]
+
+    GROUP --> GPO[Printer Deployment GPO]
+
+    GPO --> PRINTER[FINANCE-PRINTER]
+
+    PRINTER --> HP[HP Network Printer]
+
+```
+
+## User Provisioning Workflow
+
+```mermaid
+graph LR
+
+    NEWUSER[New Employee]
+
+    NEWUSER --> OU[Finance OU]
+
+    OU --> GROUP[Finance-Team]
+
+    GROUP --> DRIVE[Finance Drive]
+
+    GROUP --> PRINTER[Finance Printer]
+
+    GROUP --> POLICY[Finance Policies]
+
+```
+
