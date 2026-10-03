@@ -81,6 +81,7 @@ solotech.local
 ```
 
 ### Security Groups
+```
 IT-Team
 
 HR-Team
@@ -95,6 +96,8 @@ Finance-Team-Payroll
 ```
 
 ---
+
+```text
 ```
 # Infrastructure Components
 
