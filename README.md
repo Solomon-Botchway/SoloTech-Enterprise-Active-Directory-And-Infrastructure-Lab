@@ -94,11 +94,9 @@ CustomerService-Team
 
 Finance-Team-Payroll
 ```
-
 ---
 
-```text
-```
+``
 # Infrastructure Components
 
 ## DC01 – Windows Server 2022
