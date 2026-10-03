@@ -82,10 +82,15 @@ solotech.local
 
 ### Security Groups
 IT-Team
+
 HR-Team
+
 Finance-Team
+
 Sales-Team
+
 CustomerService-Team
+
 Finance-Team-Payroll
 ```
 
