@@ -752,14 +752,6 @@ The SoloTech lab evolved from a Windows-only Active Directory environment into a
 
 This implementation reflects the type of environment commonly found in enterprise organizations where Linux and Windows systems coexist and rely on a shared identity platform.
 
-
-
-
-
-
-
-
-
 ## Future Enhancements
 
 Planned expansion areas include:
