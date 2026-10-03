@@ -156,12 +156,17 @@ Departmental file shares secured through:
 - NTFS Permissions
 - Least Privilege Design
 
+```
 Examples:
 
 IT_Drive
+
 HR_Drive
+
 FINANCE_Drive
+
 SALES_Drive
+
 CUST-SERV_Drive
 ```
 
