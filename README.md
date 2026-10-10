@@ -13,6 +13,7 @@ The project focuses on building practical experience in:
 - File and Print Services
 - Software Deployment
 - Windows Event Forwarding (WEF)
+- Scheduled Task Automation
 - Security Monitoring
 - IT Service Management
 - Enterprise Troubleshooting
