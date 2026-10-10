@@ -79,7 +79,7 @@ This layout guarantees absolute default persistence by enforcing two rules in a 
 * **Administrative Template:** Enforced `Turn off Windows default printer management` under *User Configuration > Policies > Administrative Templates > Control Panel > Printers*.
 * **Registry Pre-Conditioning:** Deployed a GPP Registry update to push `LegacyDefaultPrinterMode = 1` (REG_DWORD) under `HKCU\Software\Microsoft\Windows NT\CurrentVersion\Windows`.
 
-## Lab Setup
+## Scheduled Task Authentication & Network Drive Troubleshooting
 
 ### Environment
 
