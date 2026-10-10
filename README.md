@@ -83,16 +83,12 @@ solotech.local
 ### Security Groups
 ```
 IT-Team
-
 HR-Team
-
 Finance-Team
-
 Sales-Team
-
 CustomerService-Team
-
 Finance-Team-Payroll
+Automation-Robotics
 ```
 ---
 # Infrastructure Components
@@ -751,6 +747,151 @@ Successfully verified:
 The SoloTech lab evolved from a Windows-only Active Directory environment into a hybrid Windows/Linux infrastructure with centralized authentication, access control, and identity management.
 
 This implementation reflects the type of environment commonly found in enterprise organizations where Linux and Windows systems coexist and rely on a shared identity platform.
+
+## Hands-On Lab: Scheduled Task Authentication & Network Drive Troubleshooting
+
+### Overview
+
+As part of my Active Directory Helpdesk Lab, I created and tested a Scheduled Task running under a domain user account (`SOLOTECH\d.carter`) to simulate a real-world account lockout scenario caused by stale credentials.
+
+During implementation, I encountered and resolved several issues involving Group Policy, Windows authentication, Task Scheduler security contexts, and mapped network drives. This exercise provided practical experience troubleshooting Windows administration issues commonly seen in enterprise environments.
+
+---
+
+### Objective
+
+Create an automated reporting task that runs under a domain account and writes report data to a department file share.
+
+---
+
+### Issue 1: Scheduled Task Would Not Start
+
+#### Symptoms
+
+The task failed to execute and displayed:
+
+```text
+This task requires that the user account specified has
+Log on as a batch job rights.
+```
+
+#### Root Cause
+
+Although the user account could log on interactively, Task Scheduler runs under a separate **batch logon** security context requiring the **Log on as a batch job** user right.
+
+#### Resolution
+
+Configured the required User Rights Assignment through Group Policy and applied updates using:
+
+```cmd
+gpupdate /force
+```
+
+#### Skills Demonstrated
+
+- Group Policy Management
+- User Rights Assignment
+- Windows Authentication
+- Task Scheduler Administration
+
+---
+
+### Issue 2: Verifying Task Execution
+
+#### Test
+
+```cmd
+whoami > C:\Temp\report.txt
+```
+
+#### Result
+
+The Scheduled Task completed successfully and generated:
+
+```text
+solotech\d.carter
+```
+
+confirming that the task was executing under the intended domain account.
+
+#### Skills Demonstrated
+
+- Task Validation
+- Windows Command Line
+- Security Context Verification
+
+---
+
+### Issue 3: Scheduled Task Failed When Writing to Mapped Network Drive
+
+#### Test
+
+```text
+F:\Notes\report.txt
+```
+
+#### Result
+
+Task Scheduler returned:
+
+```text
+0x1
+```
+
+The same command executed successfully when run manually from PowerShell or Command Prompt.
+
+---
+
+### Investigation
+
+To identify the difference, I compared the output of:
+
+```cmd
+net use
+```
+
+#### Interactive User Session
+
+```text
+F: mapped to Finance Department Drive
+```
+
+#### Scheduled Task Session
+
+```text
+There are no entries in the list.
+```
+
+---
+
+### Root Cause
+
+The mapped drive letter (`F:`) existed only within the user's interactive logon session.
+
+When Task Scheduler executed under a batch logon session, mapped network drives were unavailable, causing the task to fail when attempting to access the share using the drive letter.
+
+---
+
+### Resolution
+
+Replaced the mapped drive path:
+
+```text
+F:\Notes\report.txt
+```
+
+with the UNC path:
+
+```text
+\\DC01\Finance_Data\Notes\report.txt
+```
+
+The task immediately executed successfully and wrote the report to the shared 
+
+
+
+
+
 
 ## Future Enhancements
 
