@@ -1,5 +1,48 @@
 # SoloTech Innovations Enterprise Active Directory Lab
+## Repository Structure
 
+```text
+solotech-enterprise-lab/
+│
+├── README.md
+│
+├── Architecture/
+│   ├── Enterprise-Architecture.md
+│   ├── Active-Directory-Design.md
+│   └── File-Server-Architecture.md
+│
+├── Infrastructure/
+│   ├── DC01-Domain-Controller.md
+│   ├── FS01-File-Server.md
+│   ├── PC01-Windows-Workstation.md
+│   └── PC02-Linux-Workstation.md
+│
+├── Projects/
+│   ├── Active-Directory-Deployment/
+│   ├── Printer-Deployment/
+│   ├── Linux-Domain-Join/
+│   ├── Event-Forwarding/
+│   └── File-Server-Migration/
+│
+├── Screenshots/
+│   ├── ActiveDirectory/
+│   ├── FileServer/
+│   ├── GPOs/
+│   ├── Linux/
+│   ├── Printers/
+│   └── EventForwarding/
+│
+├── Troubleshooting/
+│   ├── Share-vs-NTFS-Permissions.md
+│   ├── DNS-Registration-Issue.md
+│   ├── Printer-Deployment-Issues.md
+│   └── Trust-Relationship-Failure.md
+│
+└── Helpdesk-Tickets/
+    ├── INC-001-Account-Lockout.md
+    ├── INC-003-New-User-Onboarding.md
+    └── INC-014-Employee-Offboarding.md
+```
 ## Overview
 
 SoloTech Innovations is a hands-on enterprise infrastructure lab designed to simulate a real-world Microsoft environment using Hyper-V, Windows Server 2022, and Windows 11 Enterprise.
@@ -31,41 +74,30 @@ The environment was designed, deployed, administered, and continuously improved 
                                                 │
                             ┌───────────────────┴───────────────────┐
                             │                                       │
-                         Host Laptop                         HP DJ2700 Printer
-                       Windows 11 Pro
-                            │
-                Hyper-V  External Switch +
-                   Internal LAB Switch
-                            │
-    ┌───────────────────────┼───────────────────────┐
-    │                       │                       │
-  DC01                    PC01                   PC02
-Windows Server        Windows 11             Linux Ubuntu 26.04
-2022 Enterprise       Workstation            Workstation  
-   │                  (All Users)              (IT-Team Only)
-   ▼
-  Active Directory DS
-  Domain Name Service
-  Group Policy Objects
-  File Services / Drive Mapping
-  Print Services / Auto-Deployment
-  Software Repository/Deployment
-  Centralize Event Log Collector
-        │                       │                      │
-        └────────────── solotech.local ────────────────┘
-                Centralized Authentication
-                            │
-                            ▼
-             Auto Deployment and Self Updating Printer Allocation
-                            │
-                            ▼
-                    HP DJ2700 Series
-                     Network Printer
-                      ├── IT-PRINTER
-                      ├── HR-PRINTER
-                      ├── FINANCE-PRINTER
-                      ├── SALES-PRINTER
-                      └── CUST-SERV-PRINTER
+                          Host Laptop                         HP DJ2700 Series Printer
+                     HP Elitebook Windows 11 Pro                  (On-Site)
+                                │
+                   Hyper-V Internal LAB Switch 
+                      + External Switch 
+                                │
+    ┌───────────────────────────┼───────────────────────┼────────────────────────────┐
+    │                           │                       │                            │
+  DC01                        FS01                     PC01/03                         PC02
+Windows Server              Windows Server          Windows 11                 Linux Ubuntu 26.04
+2022 Enterprise             2022 Enterprise          Workstation                   Workstation
+(Administrators)            (Domain Admins)           (All Users)                 (IT-Team Only)
+       │                         │
+       ▼                         ▼
+  Active Directory           Department Shares/Drives Mapping
+  DNS                        User Home Folders
+  DHCP                       Archive Storage
+  GPO                        Software Repository
+  Printer Deployment         Wallpaper Repository
+  Event Log Collector        Screensaver Repository
+
+        │                          │                              │                              │
+        └──────────────────────────────── solotech.local ────────────────────────────────────────┘
+                                    Centralized Authentication
 
 ```
 ## Active Directory Structure
@@ -94,19 +126,21 @@ Automation-Robotics
 ---
 # Infrastructure Components
 
-## DC01 – Windows Server 2022
+## DC01 & FS01– Windows Server 2022
 
 Configured as the central infrastructure server providing:
 
 - Active Directory Domain Services (AD DS)
 - DNS
+- DHCP
 - Group Policy Management
 - File Services
+- Storage Services
 - Print Services
 - Software Deployment Repository
 - Windows Event Collector
 
-## PC01 – Windows 11 Enterprise
+## PC01 & PC03 – Windows 11 Enterprise
 
 Configured as the primary domain-joined workstation for:
 
@@ -117,6 +151,13 @@ Configured as the primary domain-joined workstation for:
 - Security monitoring
 - Event forwarding
 
+## PC02 – LINUX UBUNTU 26.04
+
+ Domain-joined workstation for:
+
+- RBAC authentication testing
+- Multi-Platform testing
+  
 ---
 
 # Core Technologies Implemented
@@ -143,6 +184,8 @@ Successfully implemented:
 - Customer Service Restrictions
 - Software Deployment
 - Security Auditing Policies
+- Finance only Software
+- Finance Desktop Policies
 
 ## File Services
 
