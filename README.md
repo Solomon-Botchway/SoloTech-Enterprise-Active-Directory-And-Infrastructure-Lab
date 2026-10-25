@@ -253,7 +253,7 @@ Created and configured:
 solotech.local
 └── SoloTech
     └── Finance
-         └── dokafor
+         └── david.carter
 ```
 
 Configured:
@@ -450,7 +450,6 @@ This project evolved from a simple Active Directory deployment into a miniature 
 
 ---
 
-
 ## Hands-On Lab: Scheduled Task Authentication & Network Drive Troubleshooting
 
 ### Overview
@@ -590,11 +589,6 @@ with the UNC path:
 ```
 
 The task immediately executed successfully and wrote the report to the shared 
-
-
-
-
-
 
 ## Future Enhancements
 
