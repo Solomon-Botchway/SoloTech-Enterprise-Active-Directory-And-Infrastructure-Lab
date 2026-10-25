@@ -1,48 +1,5 @@
 # SoloTech Innovations Enterprise Active Directory Lab
-## Repository Structure
 
-```text
-solotech-enterprise-lab/
-│
-├── README.md
-│
-├── Architecture/
-│   ├── Enterprise-Architecture.md
-│   ├── Active-Directory-Design.md
-│   └── File-Server-Architecture.md
-│
-├── Infrastructure/
-│   ├── DC01-Domain-Controller.md
-│   ├── FS01-File-Server.md
-│   ├── PC01-Windows-Workstation.md
-│   └── PC02-Linux-Workstation.md
-│
-├── Projects/
-│   ├── Active-Directory-Deployment/
-│   ├── Printer-Deployment/
-│   ├── Linux-Domain-Join/
-│   ├── Event-Forwarding/
-│   └── File-Server-Migration/
-│
-├── Screenshots/
-│   ├── ActiveDirectory/
-│   ├── FileServer/
-│   ├── GPOs/
-│   ├── Linux/
-│   ├── Printers/
-│   └── EventForwarding/
-│
-├── Troubleshooting/
-│   ├── Share-vs-NTFS-Permissions.md
-│   ├── DNS-Registration-Issue.md
-│   ├── Printer-Deployment-Issues.md
-│   └── Trust-Relationship-Failure.md
-│
-└── Helpdesk-Tickets/
-    ├── INC-001-Account-Lockout.md
-    ├── INC-003-New-User-Onboarding.md
-    └── INC-014-Employee-Offboarding.md
-```
 ## Overview
 
 SoloTech Innovations is a hands-on enterprise infrastructure lab designed to simulate a real-world Microsoft environment using Hyper-V, Windows Server 2022, and Windows 11 Enterprise.
@@ -219,9 +176,55 @@ Finance-Team-Payroll
 to protect sensitive financial records.
 
 ---
+## DHCP Implementation
 
+A centralized DHCP service was deployed on DC01 to automate IP address management.
+
+### Scope Configuration
+
+```text
+Scope:
+192.168.10.100 - 192.168.10.200
+
+Domain:
+solotech.local
+
+DNS:
+192.168.10.10
+
+Router:
+192.168.0.1
+```
+
+### Reservations
+
+```text
+PC01
+192.168.10.110
+
+PC03
+192.168.10.130
+
+FS01
+192.168.10.20
+```
+
+### Benefits
+
+- Centralized endpoint management
+- Consistent IP allocation
+- Automatic DNS registration
+- Reduced manual configuration
+- Enterprise-style network administration
+
+### Skills Demonstrated
+
+- Windows DHCP Administration
+- Scope Management
+- DHCP Reservations
+- DNS Integration
+- Network Infrastructure Management
 # Featured Projects
-
 
 ---
 
