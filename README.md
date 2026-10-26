@@ -119,7 +119,7 @@ Configured as the primary domain-joined workstation for:
 
 # Core Technologies Implemented
 
-## Active Directory & Identity Management
+## 1. Active Directory & Identity Management
 
 - User account provisioning
 - Password management
@@ -129,54 +129,74 @@ Configured as the primary domain-joined workstation for:
 - Role-Based Access Control (RBAC)
 - Least Privilege implementation
 
-## Group Policy Management
+## 2. DNS (Domain Name System)
 
-Successfully implemented:
+Implemented and managed Microsoft DNS as part of the Active Directory infrastructure on DC01.
 
-- Password Complexity Policies
-- Account Lockout Policies
-- Department Drive Mapping
-- Department Printer Deployment
-- HR Wallpaper Deployment
-- Customer Service Restrictions
-- Software Deployment
-- Security Auditing Policies
-- Finance only Software
-- Finance Desktop Policies
+### Key Responsibilities
 
-## File Services
-
-Departmental file shares secured through:
-
-- Active Directory Security Groups
-- Share Permissions
-- NTFS Permissions
-- Least Privilege Design
-
-```
-Examples:
-
-IT_Drive
-
-HR_Drive
-
-FINANCE_Drive
-
-SALES_Drive
-
-CUST-SERV_Drive
-```
-
-A separate Payroll security model was implemented using:
+- Installed and configured the DNS Server role
+- Integrated DNS with Active Directory Domain Services (AD DS)
+- Managed the internal DNS zone:
 
 ```text
-Finance-Team-Payroll
+solotech.local
 ```
 
-to protect sensitive financial records.
+- Verified domain name resolution between servers and clients
+- Supported Active Directory authentication and Group Policy processing
+- Configured DNS records for domain-joined devices
+- Performed DNS troubleshooting and record management
+- Implemented DNS forwarding to external ISP DNS servers for internet name resolution
 
+### Enterprise Features Demonstrated
+
+- Active Directory Integrated DNS
+- Forward and Reverse Lookup Zones
+- Dynamic DNS Registration
+- DNS Forwarders
+- Name Resolution Troubleshooting
+- Client and Server DNS Configuration
+
+### Example Environment
+
+```text
+DC01
+192.168.10.10
+DNS Server
+
+FS01
+192.168.10.20
+
+PC01
+192.168.10.110
+
+PC02
+Linux Workstation
+
+PC03
+192.168.10.130
+```
+
+All systems use:
+
+```text
+192.168.10.10
+```
+
+as their primary DNS server, ensuring consistent domain authentication, Group Policy application, drive mapping, file server access, and resource discovery throughout the environment.
+
+### Skills Demonstrated
+
+- Microsoft DNS Administration
+- Active Directory Integration
+- Name Resolution
+- DNS Forwarders
+- DNS Troubleshooting
+- Enterprise Network Services
 ---
-## DHCP Implementation
+
+## 3. DHCP Implementation
 
 A centralized DHCP service was deployed on DC01 to automate IP address management.
 
@@ -224,11 +244,58 @@ FS01
 - DHCP Reservations
 - DNS Integration
 - Network Infrastructure Management
-# Featured Projects
-
 ---
 
-## New Employee Onboarding
+## 4. Group Policy Management
+
+Successfully implemented:
+
+- Password Complexity Policies
+- Account Lockout Policies
+- Department Drive Mapping
+- Department Printer Deployment
+- HR Wallpaper Deployment
+- Customer Service Restrictions
+- Software Deployment
+- Security Auditing Policies
+- Finance only Software
+- Finance Desktop Policies
+
+## 5. File Services
+
+Departmental file shares secured through:
+
+- Active Directory Security Groups
+- Share Permissions
+- NTFS Permissions
+- Least Privilege Design
+
+```
+Examples:
+
+IT_Drive
+
+HR_Drive
+
+FINANCE_Drive
+
+SALES_Drive
+
+CUST-SERV_Drive
+```
+
+A separate Payroll security model was implemented using:
+
+```text
+Finance-Team-Payroll
+```
+
+to protect sensitive financial records.
+
+---
+# Featured Projects
+
+## 1. New Employee Onboarding
 
 ### Ticket Reference
 
@@ -312,7 +379,7 @@ The new employee was deliberately excluded from Payroll access using:
 
 ---
 
-## Security Monitoring & Event Forwarding
+## 2. Security Monitoring & Event Forwarding
 
 ### Objective
 
@@ -453,7 +520,8 @@ This project evolved from a simple Active Directory deployment into a miniature 
 
 ---
 
-## Hands-On Lab: Scheduled Task Authentication & Network Drive Troubleshooting
+## Hands-On Lab: 
+## Scheduled Task Authentication & Network Drive Troubleshooting
 
 ### Overview
 
