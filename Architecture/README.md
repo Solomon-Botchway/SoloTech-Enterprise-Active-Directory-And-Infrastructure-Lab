@@ -1,4 +1,4 @@
-# Architecture
+# Architecture Diagram - Multi-Server
 
 This folder contains diagrams and design documents for the SoloTech environment.
 Project reports and technical documents.
@@ -190,42 +190,7 @@ graph LR
 
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# SoloTech Active Directory Lab
+# SoloTech Active Directory Lab - Initial Single Server Diagram
 
 ```mermaid
 graph TD
