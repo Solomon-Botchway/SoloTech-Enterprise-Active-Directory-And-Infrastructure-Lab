@@ -5,7 +5,6 @@
 SoloTech Innovations is a hands-on enterprise infrastructure lab designed to simulate a real-world Microsoft environment using Hyper-V, Windows Server 2022, and Windows 11 Enterprise.
 
 The project focuses on building practical experience in:
-
 - Active Directory Domain Services (AD DS)
 - DNS Administration
 - Group Policy Management
@@ -21,6 +20,7 @@ The project focuses on building practical experience in:
 The environment was designed, deployed, administered, and continuously improved through real-world support scenarios and change-management style projects.
 
 ---
+<img width="946" height="506" alt="Screenshot 2026-10-18 233802" src="https://github.com/user-attachments/assets/8f4d318e-520a-4f29-8279-33189b405a5d" />
 
 # Infrastructure Overview
 
@@ -114,7 +114,7 @@ Configured as the primary domain-joined workstation for:
 
 - RBAC authentication testing
 - Multi-Platform testing
-  
+
 ---
 
 # Core Technologies Implemented
