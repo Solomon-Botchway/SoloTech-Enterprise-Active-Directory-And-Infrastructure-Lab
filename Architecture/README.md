@@ -3,6 +3,92 @@
 This folder contains diagrams and design documents for the SoloTech environment.
 Project reports and technical documents.
 
+## Enterprise Architecture
+
+```mermaid
+graph TD
+
+    INTERNET[Internet]
+
+    INTERNET --> ROUTER[Router<br/>192.168.0.1]
+
+    ROUTER --> SWITCH[Hyper-V External Switch]
+
+    SWITCH --> DC01[DC01<br/>Windows Server 2022]
+
+    SWITCH --> FS01[FS01<br/>Windows Server 2022]
+
+    SWITCH --> PRINTER[HP DJ2700<br/>Network Printer]
+
+    SWITCH --> PC01[PC01<br/>Windows 11]
+
+    SWITCH --> PC03[PC03<br/>Windows 11]
+
+    SWITCH --> PC02[PC02<br/>Linux]
+
+    DC01 --> AD[Active Directory]
+    DC01 --> DNS[DNS]
+    DC01 --> DHCP[DHCP]
+    DC01 --> GPO[Group Policy]
+    DC01 --> WEF[Event Collection]
+
+    FS01 --> FILES[Department Drives]
+    FS01 --> HOMES[User Home Folders]
+    FS01 --> ARCHIVE[Archives]
+    FS01 --> SOFTWARE[Software Repository]
+    FS01 --> WALLPAPER[Wallpapers]
+    FS01 --> SCREENSAVER[Screensavers]
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # SoloTech Active Directory Lab
 
 ```mermaid
