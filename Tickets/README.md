@@ -462,3 +462,6 @@ The progression demonstrates the ability to move from **symptom → investigatio
 > **Don't just unlock the account — find out what is locking it.**
 
 This project reinforced the importance of systematic troubleshooting when dealing with Active Directory authentication issues and demonstrated how seemingly simple account lockouts can originate from users, devices, applications, or automated Windows processes.
+
+## MORE TICKETS IN FULL TITCKETS REPOSITORY ON HOMEPAGE
+
