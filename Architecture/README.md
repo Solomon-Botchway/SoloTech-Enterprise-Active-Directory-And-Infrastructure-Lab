@@ -41,18 +41,154 @@ graph TD
 
 ```
 
+## File Services Architecture
+
+```mermaid
+graph TD
+
+    FS01[FS01 File Server]
+
+    FS01 --> IT[IT_Drive]
+
+    FS01 --> HR[HR_Drive]
+
+    FS01 --> FIN[Finance_Drive]
+
+    FS01 --> SALES[Sales_Drive]
+
+    FS01 --> CS[CustomerService_Drive]
+
+    FS01 --> HOMES[UserHomes]
+
+    FS01 --> ARCHIVES[Archives]
+
+    FS01 --> SOFTWARE[Software Repository]
+
+```
+
+## Printer Deployment Architecture
+
+```mermaid
+graph LR
+
+    USER[Domain User]
+
+    USER --> GROUP[Security Group]
+
+    GROUP --> GPO[Printer Deployment GPO]
+
+    GPO --> QUEUE[Department Printer Queue]
+
+    QUEUE --> DEFAULT[Default Printer Assignment]
+
+    DEFAULT --> HP[HP DJ2700 Network Printer]
+
+```
+
+## User Provisioning Workflow
+
+```mermaid
+graph LR
+
+    NEWUSER[New Employee]
+
+    NEWUSER --> OU[Department OU]
+
+    OU --> GROUP[Department Security Group]
+
+    GROUP --> DRIVE[Department Drive]
+
+    GROUP --> HOME[Home Folder]
+
+    GROUP --> PRINTER[Department Printer]
+
+    GROUP --> GPO[Department Policies]
+
+```
 
 
+## Employee Offboarding Process
+
+```mermaid
+graph LR
+
+    USER[Departing Employee]
+
+    USER --> DISABLE[Disable Account]
+
+    DISABLE --> REMOVE[Remove Group Memberships]
+
+    REMOVE --> ARCHIVE[Move Data To Archive]
+
+    ARCHIVE --> ACCESS[Finance-Archive-Access Group]
+
+    ACCESS --> DRIVE[A: Archive Drive]
+
+    DRIVE --> MANAGER[Line Manager Access]
+
+```
 
 
+## DHCP Architecture
 
+```mermaid
+graph TD
 
+    DHCP[DC01 DHCP Server]
 
+    DHCP --> SCOPE[192.168.10.100-200]
 
+    SCOPE --> PC01[PC01<br/>192.168.10.110 Reserved]
 
+    SCOPE --> PC03[PC03<br/>192.168.10.130 Reserved]
 
+    SCOPE --> PC02[Linux Workstation]
 
+    DHCP --> DNS[DNS: 192.168.10.10]
 
+    DHCP --> ROUTER[Gateway: 192.168.0.1]
+
+    DHCP --> DOMAIN[Domain: solotech.local]
+
+```
+
+## Security Monitoring Architecture
+
+```mermaid
+graph LR
+
+    PC01 --> WEF[Windows Event Forwarding]
+
+    PC03 --> WEF
+
+    DC01 --> WEF
+
+    WEF --> COLLECTOR[DC01 Event Collector]
+
+    COLLECTOR --> LOGON[Logon Monitoring]
+
+    COLLECTOR --> LOCKOUT[Account Lockout Monitoring]
+
+    COLLECTOR --> AUDIT[Security Auditing]
+
+```
+
+## Linux Active Directory Integration
+
+```mermaid
+graph LR
+
+    PC02[Linux Workstation]
+
+    PC02 --> DOMAIN[solotech.local]
+
+    DOMAIN --> AUTH[AD Authentication]
+
+    AUTH --> ITTEAM[IT-Team Login Allowed]
+
+    AUTH --> DENY[Other Departments Denied]
+
+```
 
 
 
